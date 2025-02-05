@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Obesity Prediction</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'prediction/style.css' %}">
+  </head>
+  <body>
+    <div id="container">
+      <h1>ML-Based Obesity Prediction</h1>
+
+      <form action="predict/" method="POST">
+        {% csrf_token %}
+        
+        <section id="input">
+          <div>
+            <h2>Basic Information</h2>
+            <div class="form-field">
+              <label for="{{ form.gender.name }}">{{ form.gender.label }}</label>
+              {{ form.gender }}
+            </div>
+            <div class="form-field">
+              <label for="{{ form.age.name }}">{{ form.age.label }}</label>
+              {{ form.age }}
+            </div>
+            <div class="form-field">
+              <label for="{{ form.height.name }}">{{ form.height.label }}</label>
+              {{ form.height }}
+            </div>
+            <div class="form-field">
+              <label for="{{ form.weight.name }}">{{ form.weight.label }}</label>
+              {{ form.weight }}
+            </div>
+            <div class="form-field">
+              <label for="{{ form.history.name }}">{{ form.history.label }}</label>
+              {{ form.history }}
+            </div>
+            <div class="form-field">
+              <label for="{{ form.faf.name }}">{{ form.faf.label }}</label>
+              {{ form.faf }}
+            </div>
+            <div class="form-field">
+              <label for="{{ form.tue.name }}">{{ form.tue.label }}</label>
+              {{ form.tue }}
+            </div>
+            <div class="form-field">
+              <label for="{{ form.mtrans.name }}">{{ form.mtrans.label }}</label>
+              {{ form.mtrans }}
+            </div>
+          </div>
+
+          <div>
+            <h2>Eating Habits</h2>
+            <div class="form-field">
+              <label for="{{ form.ncp.name }}">{{ form.ncp.label }}</label>
+              {{ form.ncp }}
+            </div>
+            <div class="form-field">
+              <label for="{{ form.caec.name }}">{{ form.caec.label }}</label>
+              {{ form.caec }}
+            </div>
+            <div class="form-field">
+              <label for="{{ form.favc.name }}">{{ form.favc.label }}</label>
+              {{ form.favc }}
+            </div>
+            <div class="form-field">
+              <label for="{{ form.fcvc.name }}">{{ form.fcvc.label }}</label>
+              {{ form.fcvc }}
+            </div>
+            <div class="form-field">
+              <label for="{{ form.ch2o.name }}">{{ form.ch2o.label }}</label>
+              {{ form.ch2o }}
+            </div>
+            <div class="form-field">
+              <label for="{{ form.scc.name }}">{{ form.scc.label }}</label>
+              {{ form.scc }}
+            </div>
+            <div class="form-field">
+              <label for="{{ form.calc.name }}">{{ form.calc.label }}</label>
+              {{ form.calc }}
+            </div>
+            <div class="form-field">
+              <label for="{{ form.smoke.name }}">{{ form.smoke.label }}</label>
+              {{ form.smoke }}
+            </div>
+          </div>
+        </section>
+  
+        <button type="submit">Predict</button>
+      </form>
+  
+      {% if prediction_result %}
+        <div id="prediction">
+          <p>Prediction: <span>{{ prediction_result }}</span></p>
+        </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
